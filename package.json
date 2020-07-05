@@ -15,7 +15,8 @@
     "nodemon": "^2.0.4"
   },
   "scripts": {
-    "start": "nodemon server.js",
+    "dev": "nodemon server.js",
+    "start": "node server.js",
     "deploy": "git push heroku master",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install",
     "test": "echo \"Error: no test specified\" && exit 1"
