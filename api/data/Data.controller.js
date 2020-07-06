@@ -30,7 +30,7 @@ const scrapData = (req, res) => {
       const Active = Confirmed - Recovered - Deaths;
       const data = { Tests, Confirmed, Active, Recovered, Deaths, Date: new Date(Date.now() - 86400000) };
       try {
-        await dataRepository.storeData(data);
+        // await dataRepository.storeData(data);
         res.json({ success: true, data });
       } catch (error) {
         console.log(error);
