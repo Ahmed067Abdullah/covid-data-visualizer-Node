@@ -44,8 +44,8 @@ const scrapData = (req, res) => {
 };
 
 const getData = async (req, res) => {
-  const savedCertificate = await dataRepository.getData();
-  res.send(savedCertificate);
+  const data = await dataRepository.getData();
+  res.send(data);
 };
 
 const deleteData = async (req, res) => {
