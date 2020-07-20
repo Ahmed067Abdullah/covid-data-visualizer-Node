@@ -44,7 +44,13 @@ const scrapData = (req, res) => {
 };
 
 const getData = async (req, res) => {
-  const data = await dataRepository.getData();
+  const { days } = req.query;
+  let data = [];
+  if (days) {
+    data = await dataRepository.getDataOfDays(+days)
+  } else {
+    data = await dataRepository.getData();
+  }
   res.send(data);
 };
 

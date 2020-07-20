@@ -6,6 +6,17 @@ const getData = async () => {
   return allData;
 };
 
+const getDataOfDays = async days => {
+  const milisecondsInOneDay = 86400000;
+  const dataFromDate = new Date((new Date().getTime() - ((days + 1) * milisecondsInOneDay)));
+  
+  let allData = await Data.find({
+    "Date": { $gte: dataFromDate }
+  });
+  if (!allData) allData = [];
+  return allData;
+};
+
 const storeData = async payload => {
   const data = new Data(payload);
   return await data.save();
@@ -26,6 +37,7 @@ const deleteDataById = async _id => {
 
 module.exports = {
   getData,
+  getDataOfDays,
   storeBulkData,
   storeData,
   deleteDataById
