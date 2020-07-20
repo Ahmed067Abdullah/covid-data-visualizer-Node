@@ -8,8 +8,8 @@ const getData = async () => {
 
 const getDataOfDays = async days => {
   const milisecondsInOneDay = 86400000;
-  const dataFromDate = new Date((new Date().getTime() - ((days + 1) * milisecondsInOneDay)));
-  
+  const dataFromDate = new Date((new Date().getTime() - ((days + 2) * milisecondsInOneDay)));
+
   let allData = await Data.find({
     "Date": { $gte: dataFromDate }
   });
