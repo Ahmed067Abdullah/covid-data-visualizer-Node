@@ -1,7 +1,7 @@
 const Data = require("./Data.model");
 
 const getData = async () => {
-  let allData = await Data.find();
+  let allData = await Data.find().sort([['Date', 1]]);
   if (!allData) allData = [];
   return allData;
 };
@@ -12,7 +12,7 @@ const getDataOfDays = async days => {
 
   let allData = await Data.find({
     "Date": { $gte: dataFromDate }
-  });
+  }).sort([['Date', 1]]);
   if (!allData) allData = [];
   return allData;
 };
