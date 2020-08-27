@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const bodyParser = require('body-parser')
 const cors = require("cors");
 
 const data = require("./api/data/Data.route");
@@ -8,6 +9,7 @@ const mongoURI = require("./config/keys").mongoURI;
 const app = express();
 const port = process.env.PORT || 5000;
 
+app.use(bodyParser.json());
 app.use(cors());
 
 mongoose

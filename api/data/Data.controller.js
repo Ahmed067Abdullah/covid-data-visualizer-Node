@@ -43,6 +43,16 @@ const scrapData = (req, res) => {
     });
 };
 
+const getDataById = async (req, res) => {
+  const { _id } = req.params;
+  try {
+    const data = await dataRepository.getDataById(_id);
+    res.send({ success: true, data });
+  } catch (error) {
+    console.log(error);
+    res.send({ success: false, error });
+  }
+};
 const getData = async (req, res) => {
   const { days } = req.query;
   let data = [];
@@ -65,10 +75,23 @@ const deleteData = async (req, res) => {
   }
 }
 
+const updateData = async (req, res) => {
+  const { _id } = req.params;
+  try {
+    const data = await dataRepository.getDataById(_id);
+    await dataRepository.updateDataById(_id, +req.body.Tests);
+    res.send({ success: true });
+  } catch (error) {
+    console.log(error);
+    res.send({ success: false, error });
+  }
+}
 
 module.exports = {
   scrapData,
   getData,
+  getDataById,
   copyDataFromOtherAPI,
-  deleteData
+  deleteData,
+  updateData
 };

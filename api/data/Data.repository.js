@@ -1,5 +1,9 @@
 const Data = require("./Data.model");
 
+const getDataById = async _id => {
+  return await Data.findById(_id);
+}
+
 const getData = async () => {
   let allData = await Data.find().sort([['Date', 1]]);
   if (!allData) allData = [];
@@ -35,10 +39,16 @@ const deleteDataById = async _id => {
   return Data.findByIdAndRemove(_id);
 }
 
+const updateDataById = async (_id, Tests) => {
+  return Data.updateOne({ _id }, { $set: { Tests }});
+}
+
 module.exports = {
+  getDataById,
   getData,
   getDataOfDays,
   storeBulkData,
   storeData,
-  deleteDataById
+  deleteDataById,
+  updateDataById
 };
